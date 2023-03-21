@@ -6,6 +6,7 @@ const Map = dynamic(() => import('@/components/map'), {
 });
 
 export default function Home() {
+  console.log(process.env.NEXT_PUBLIC_MAPBOX);
   return (
     <>
       <main className="h-screen bg-red-100">
