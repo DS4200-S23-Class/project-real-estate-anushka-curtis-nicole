@@ -28,7 +28,29 @@ export default function MapPage({ properties }) {
           </div>
         </div>
         <div className="col-span-1">
-          <div className="p-3">{selectedProperty.name || 'Please Select A Property'}</div>
+          <div className="p-3">
+            <img class="w-16 md:w-32 lg:w-48" src={selectedProperty.imageUrl}></img>
+            <h2 className="font-bold">Name</h2>
+            {selectedProperty.name || 'Please Select A Property'}
+            <h2 className="font-bold">Price</h2>
+            <div>${selectedProperty.price || ''}</div>
+            <h2 className="font-bold">Beds</h2>
+            <div>{selectedProperty.beds}</div>
+            <h2 className="font-bold">Baths</h2>
+            <div>{selectedProperty.baths}</div>
+            <h2 className="font-bold">Listing Date</h2>
+            <div>{selectedProperty.dateListed}</div>
+            <h2 className="font-bold">Property Status</h2>
+            <div>{selectedProperty.status}</div>
+            <h2 className="font-bold">Real Estate Agent Name</h2>
+            <div>{selectedProperty.listingAgentName}</div>
+            <h2 className="font-bold">Real Estate Agent Phone Number</h2>
+            <div>{selectedProperty.listingAgentPhoneNumber}</div>
+            <h2 className="font-bold">Real Estate Agent Email</h2>
+            <div>{selectedProperty.listingAgentEmail}</div>
+            <h2 className="font-bold">Real Estate Agency </h2>
+            <div>{selectedProperty.listingAgencyName}</div>
+          </div>
         </div>
       </main>
     </>
