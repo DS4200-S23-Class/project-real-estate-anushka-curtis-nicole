@@ -29,39 +29,27 @@ export default function MapPage({ properties }) {
           </div>
         </div>
         <div className="col-span-1">
-          {selectedProperty.imageUrl && (
-            <div className="relative h-64">
-              <Image
-                className="object-cover"
-                alt={selectedProperty.name}
-                src={selectedProperty.imageUrl}
-                fill
-              />
-            </div>
-          )}
-          <div className="p-3">
+          <div className="h-screen overflow-x-hidden overflow-y-scroll">
             {selectedProperty.name ? (
               <>
-                <h2 className="font-bold">Name</h2>
-                {selectedProperty.name}
-                <h2 className="font-bold">Price</h2>
-                <div>${selectedProperty.price || ''}</div>
-                <h2 className="font-bold">Beds</h2>
-                <div>{selectedProperty.beds}</div>
-                <h2 className="font-bold">Baths</h2>
-                <div>{selectedProperty.baths}</div>
-                <h2 className="font-bold">Listing Date</h2>
-                <div>{selectedProperty.dateListed}</div>
-                <h2 className="font-bold">Property Status</h2>
-                <div>{selectedProperty.status}</div>
-                <h2 className="font-bold">Real Estate Agent Name</h2>
-                <div>{selectedProperty.listingAgentName}</div>
-                <h2 className="font-bold">Real Estate Agent Phone Number</h2>
-                <div>{selectedProperty.listingAgentPhoneNumber}</div>
-                <h2 className="font-bold">Real Estate Agent Email</h2>
-                <div>{selectedProperty.listingAgentEmail}</div>
-                <h2 className="font-bold">Real Estate Agency </h2>
-                <div>{selectedProperty.listingAgencyName}</div>
+                {selectedProperty.imageUrl && (
+                  <div className="relative h-64">
+                    <Image
+                      className="object-cover"
+                      alt={selectedProperty.name}
+                      src={selectedProperty.imageUrl}
+                      fill
+                    />
+                  </div>
+                )}
+                <div className="p-3 space-y-4">
+                  {Object.keys(selectedProperty).map((key) => (
+                    <div key={key}>
+                      <h2 className="font-bold capitalize">{key}</h2>
+                      <p className="break-all">{selectedProperty[key]}</p>
+                    </div>
+                  ))}
+                </div>
               </>
             ) : (
               'Please Select a Property'
