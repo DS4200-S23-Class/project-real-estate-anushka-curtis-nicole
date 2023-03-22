@@ -1,9 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  headers: [
-    { key: "Access-Control-Allow-Origin", value: "*" },
-  ]
-}
+  images: {
+    domains: ['dvvjkgh94f2v6.cloudfront.net'],
+  },
+  headers: [{ key: 'Access-Control-Allow-Origin', value: '*' }],
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
