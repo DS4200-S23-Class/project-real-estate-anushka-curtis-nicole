@@ -16,17 +16,19 @@ export async function getStaticProps(context) {
 }
 
 export default function Home({ properties }) {
+  const [selectedProperty, setSelectedProperty] = useState({});
+
   return (
     <>
-      <main className="relative">
-        <Map
-          locations={properties.map((property) => ({
-            latitude: property['location/latitude'],
-            longitude: property['location/longitude'],
-          }))}
-        />
-        <div className="absolute px-4 py-2 bg-white top-4 left-4">
-          <h1 className="text-xl font-bold">Real Estate Visualization</h1>
+      <main className="grid grid-cols-4">
+        <div className="relative w-full col-span-3">
+          <Map properties={properties} setSelectedProperty={setSelectedProperty} />
+          <div className="absolute px-4 py-2 bg-white top-4 left-4">
+            <h1 className="text-xl font-bold">Real Estate Visualization</h1>
+          </div>
+        </div>
+        <div className="col-span-1">
+          <div className="p-3">{selectedProperty.name || 'Please Select A Property'}</div>
         </div>
       </main>
     </>

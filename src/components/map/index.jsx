@@ -1,8 +1,7 @@
-import { LocationMarkerIcon } from '@heroicons/react/solid';
 import { useState } from 'react';
-import ReactMapGL, { Marker, NavigationControl } from 'react-map-gl';
+import ReactMapGL, { Marker } from 'react-map-gl';
 
-export default function Map({ locations }) {
+export default function Map({ properties, setSelectedProperty }) {
   const [viewport, setViewport] = useState({
     width: '100%',
     height: '100%',
@@ -12,18 +11,21 @@ export default function Map({ locations }) {
     zoom: 10,
   });
 
-  console.log({ locations });
-
   return (
     <ReactMapGL
       mapStyle="mapbox://styles/mapbox/outdoors-v11"
       mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX}
       initialViewState={viewport}
-      style={{ width: '100vw', height: '100vh' }}
+      style={{ height: '100vh' }}
     >
-      {locations.map((location) => (
-        <div key={location.latitude + location.longitude}>
-          <Marker latitude={location.latitude} longitude={location.longitude} anchor="bottom" />
+      {properties.map((property) => (
+        <div key={property.slug}>
+          <Marker
+            onClick={() => setSelectedProperty(property)}
+            latitude={property['location/latitude']}
+            longitude={property['location/longitude']}
+            anchor="bottom"
+          />
         </div>
       ))}
     </ReactMapGL>
