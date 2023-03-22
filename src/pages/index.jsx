@@ -3,16 +3,16 @@ import Link from 'next/link';
 export default function Home() {
   return (
     <main className="px-6 space-y-8 max-w-7xl">
-      <h1 className="text-xl font-bold">Real Estate Data Visualization</h1>
+      <h1 className="text-5xl font-bold">Real Estate Data Visualization</h1>
       <div className="px-4 py-2 font-medium text-white bg-blue-600 w-min">
         <Link href="/map">View Visualization</Link>
       </div>
 
       <div>
-        <h1>The Property Buyer's Guide to Real Estate in Martha's Vineyard</h1>
+        <h1 className="text-4xl font-bold">The Property Buyer's Guide to Real Estate in Martha's Vineyard</h1>
 
         <div>
-          <h2>Motivation</h2>
+          <h2 className="text-3xl font-bold">Motivation</h2>
           Potential buyers of homes often look for homes or residences with certain price points.
           However, when moving to a new area, it can be difficult, time consuming, and
           tedious to learn about an area and discover if the properties available
@@ -28,10 +28,10 @@ export default function Home() {
         </div>
 
         <div>
-          <h2>Background</h2>
-          <h3>Data</h3>
+          <h2 className="text-3xl font-bold">Background</h2>
+          <h3 className="text-2xl font-bold">Data</h3>
 
-          <h4>What Does This Tool Visualize</h4>
+          <h4 className="text-xl italic">What Does This Tool Visualize</h4>
 
           This visualization aims to assist property buyers in identifying areas
           with opportunities for purchasing properties in Martha's Vineyard.
@@ -48,12 +48,12 @@ export default function Home() {
           and brokers. By providing an efficient means of locating properties,
           the visualization offers buyers a practical solution to the daunting task of purchasing property.
 
-          <h4>The Source of The Data and Biases and Ethical Issues Embedded In The Data</h4>
+          <h4 className="text-xl italic">The Source of The Data and Biases and Ethical Issues Embedded In The Data</h4>
 
           <p>This real estate dataset was collected by LINKMV, a Cape and Islands based real estate multi-listing service
             (MLS) provider. The purpose of a multi-listing service is to work directly with real estate brokerages to
             aggregate real estate sales into a single unified data service. This dataset, therefore, contains
-            information about real estate sales in the Cape and Islands.</p>
+            information about real estate sales in the Cape and Islands.<br></br></p>
 
           <p>One important point about this dataset is that it is relatively unbiased because LINKMV is a neutral
             third-party to the real estate market. However, it's worth noting that bias may be introduced in the
@@ -100,7 +100,7 @@ export default function Home() {
             findings
             are used in a way that promotes fairness and justice in housing markets.</p>
 
-          <h4>Data Quality Issues Found</h4>
+          <h4 className="text-xl italic">Data Quality Issues Found</h4>
 
           <p>Data quality issues discoverd in the data include difficult types of data such as photos and urls, as
             well as missing values and inconsistent values throughout the dataset. To clean the data, we decided to
@@ -127,35 +127,26 @@ export default function Home() {
             in
             its tabulated format.</p>
 
-          <div id="raw data link"><a href="/public/properties.csv">VIEW RAW DATA</a></div>
+          <div className="text-xl font-bold" id="raw data link"><Link href="/public/properties.csv">VIEW RAW DATA</Link></div>
 
-          <div id="report link"><a href="DS4200 - pm02.pdf">VIEW REPORT</a></div>
+          <div className="text-xl font-bold" id="report link"><Link href="DS4200 - pm02.pdf">VIEW REPORT</Link></div>
 
-          <div id="demo video link"><a href="THIS WILL EVENTUALLY BE A DEMO VIDEO.pdf">VIEW DEMO VIDEO</a></div>
+          <div className="text-xl font-bold" id="demo video link"><Link href="THIS WILL EVENTUALLY BE A DEMO VIDEO.pdf">VIEW DEMO VIDEO</Link></div>
         </div>
 
         <div>
-          <h2>Visualization</h2>
-          TODO: Build your visualization tool here
-          <div id="vis1">
-          </div>
-        </div>
-
-        <div>
-          <h2>Acknowledgements</h2>
+          <h2 className='text-2xl font-bold'>Acknowledgements</h2>
           <div>
             <ul>
-              <li><a href="https://www.w3schools.com/html/html_elements.asp">HTML Elements</a></li>
-              <li><a href="https://www.w3schools.com/html/html_table_headers.asp">Table Headers</a></li>
+              <li><a href="https://v2.tailwindcss.com/docs/font-size#font-sizes">Tailwind CSS Documentation</a></li>
+              <li><a href="https://www.bravolt.com/post/deploying-next-js-to-github-pages">Deploying Next.js to GitHub Pages</a></li>
               <li>
-                <a href="https://www.naukri.com/learning/articles/html-tables-tutorial-with-examples/">HTML
-                  Tables</a>
+                <a href="https://transform.tools/html-to-jsx">HTML to jsx</a>
               </li>
-              <li><a href="https://www.w3schools.com/graphics/svg_intro.asp">SVG Intro</a></li>
+              <li><a href="https://www.hyperui.dev/">Free Open Source Tailwind CSS Components</a></li>
               <li>
-                <a href="https://www.w3schools.com/tags/att_link_rel.asp">Link Attribute</a>
+                <a href="https://wattenberger.com/blog/react-and-d3">React & D3</a>
               </li>
-              <li><a href="https://www.w3schools.com/html/html_lists.asp">HTML Lists</a></li>
             </ul>
           </div>
         </div>
