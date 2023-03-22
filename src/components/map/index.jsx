@@ -12,24 +12,20 @@ export default function Map({ locations }) {
     zoom: 10,
   });
 
+  console.log({ locations });
+
   return (
     <ReactMapGL
       mapStyle="mapbox://styles/mapbox/outdoors-v11"
       mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX}
       initialViewState={viewport}
+      style={{ width: '100vw', height: '100vh' }}
     >
-      {/* {locations.map((location) => (
+      {locations.map((location) => (
         <div key={location.latitude + location.longitude}>
-          <Marker
-            latitude={location.latitude}
-            longitude={location.longitude}
-            offsetLeft={-40}
-            offsetTop={-20}
-          >
-            <LocationMarkerIcon className="w-10 h-10 text-primary" />
-          </Marker>
+          <Marker latitude={location.latitude} longitude={location.longitude} anchor="bottom" />
         </div>
-      ))} */}
+      ))}
     </ReactMapGL>
   );
 }
