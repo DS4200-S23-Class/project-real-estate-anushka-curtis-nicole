@@ -1,5 +1,6 @@
 import Link from 'next/link';
 
+
 export default function Home() {
   return (
     <main className="px-6 space-y-8 max-w-7xl">

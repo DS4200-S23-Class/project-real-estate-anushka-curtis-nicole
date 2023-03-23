@@ -2,6 +2,7 @@ import dynamic from 'next/dynamic';
 import { useState } from 'react';
 import * as d3 from 'd3';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const Map = dynamic(() => import('@/components/map'), {
   loading: () => <div className="bg-gray-100 h-96 animate-pulse" />,
@@ -16,9 +17,12 @@ export async function getStaticProps(context) {
   };
 }
 
+const listOfAttributes = ["name","price","beds", "baths", "status","dateListed", 
+                          "listingAgentName",	"listingAgentPhoneNumber", "listingAgentEmail",
+                          "listingAgencyName"];
+
 export default function MapPage({ properties }) {
   const [selectedProperty, setSelectedProperty] = useState({});
-
   return (
     <>
       <main className="grid grid-cols-4">
@@ -43,12 +47,15 @@ export default function MapPage({ properties }) {
                   </div>
                 )}
                 <div className="p-3 space-y-4">
-                  {Object.keys(selectedProperty).map((key) => (
+                  {listOfAttributes.map((key) => (
                     <div key={key}>
                       <h2 className="font-bold capitalize">{key}</h2>
                       <p className="break-all">{selectedProperty[key]}</p>
                     </div>
                   ))}
+                </div>
+                <div className="p-3 space-y-4">
+                  <Link href = "/line">view price line comparator</Link>
                 </div>
               </>
             ) : (
@@ -60,3 +67,7 @@ export default function MapPage({ properties }) {
     </>
   );
 }
+
+
+
+
