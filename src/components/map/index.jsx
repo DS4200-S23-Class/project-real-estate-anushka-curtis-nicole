@@ -19,7 +19,7 @@ export default function Map({ properties, setSelectedProperty }) {
       style={{ height: '100vh' }}
     >
       {properties.map((property) => (
-        <div key={property.slug}>
+        <div key={property.id}>
           <Marker
             onClick={() => setSelectedProperty(property)}
             latitude={property['location/latitude']}

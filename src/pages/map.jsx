@@ -2,7 +2,9 @@ import dynamic from 'next/dynamic';
 import { useState } from 'react';
 import * as d3 from 'd3';
 import Image from 'next/image';
-import Link from 'next/link';
+
+import { LineChart } from '@/components/charts/line';
+import { addNumberCommas } from '@/utils/add-number-commas';
 
 const Map = dynamic(() => import('@/components/map'), {
   loading: () => <div className="bg-gray-100 h-96 animate-pulse" />,
@@ -17,41 +19,47 @@ export async function getStaticProps(context) {
   };
 }
 
-//functions of min max price lines here
-const minMax = (data = properties, attributeName = "price") => {
+const listOfAttributes = [
+  { name: 'name', as: '', type: 'basic', formatter: (value) => value },
+  { name: 'price', as: '', type: 'range', formatter: (value) => `$${addNumberCommas(value)}` },
+  { name: 'beds', as: 'Bedrooms', type: 'range', formatter: (beds) => `${beds} Bedrooms` },
+  { name: 'baths', as: 'Bathrooms', type: 'range', formatter: (baths) => `${baths} Bathrooms` },
+  { name: 'squareFeet', as: 'Square Feet', type: 'range', formatter: (value) => value },
+  { name: 'lotSize', as: 'lotSize', type: 'range', formatter: (value) => value },
+  { name: 'status', as: '', type: 'basic', formatter: (value) => value },
+  { name: 'dateListed', as: 'Date Listed', type: 'basic', formatter: (value) => value },
+  { name: 'listingAgentName', as: 'Listing Agent', type: 'basic', formatter: (value) => value },
+  {
+    name: 'listingAgentPhoneNumber',
+    as: 'Agent Phone Number',
+    type: 'basic',
+    formatter: (value) => value,
+  },
+  { name: 'listingAgentEmail', as: 'Agent Email', type: 'basic', formatter: (value) => value },
+  { name: 'listingAgencyName', as: 'Listing Agency', type: 'basic', formatter: (value) => value },
+];
 
-  const totals = data
-    .filter(x =>
-      x.obj.info.find(y => y.attributeName)
-    ).map(x => x.obj.total);
+function getMin(attribute, collection) {
+  const property = collection.reduce(function (prev, curr) {
+    return prev[attribute] < curr[attribute] ? prev : curr;
+  });
 
-  return [Math.min(...totals), Math.max(...totals)];
+  return property[attribute];
 }
 
-const priceMinMax = minMax();
-const bedsMinMax = minMax(attributeName = "beds");
+function getMax(attribute, collection) {
+  const property = collection.reduce(function (prev, curr) {
+    return prev[attribute] > curr[attribute] ? prev : curr;
+  });
 
-const XAxis = ({ data, xScale, height }) => {
-  return (
-    <g className="x-axis">
-      {data.map((d, i) => (
-        <g key={i} transform={`translate(${xScale(d)},0)`}>
-          <line y2={height} />
-          <text y={height + 10} dy=".71em" style={{ textAnchor: 'middle' }}>{d}</text>
-        </g>
-      ))}
-    </g>
-  );
-};
-
-export default XAxis;
-
-const listOfAttributes = ["name", "price", "beds", "baths", "status", "dateListed",
-  "listingAgentName", "listingAgentPhoneNumber", "listingAgentEmail",
-  "listingAgencyName"];
+  return property[attribute];
+}
 
 export default function MapPage({ properties }) {
   const [selectedProperty, setSelectedProperty] = useState({});
+
+  console.log(getMin('yearBuilt', properties));
+
   return (
     <>
       <main className="grid grid-cols-4">
@@ -75,20 +83,31 @@ export default function MapPage({ properties }) {
                     />
                   </div>
                 )}
-                <div className="p-3 space-y-4">
+                <div className="px-12 py-6 space-y-4">
                   {listOfAttributes.map((key) => (
-                    <div key={key}>
-                      <h2 className="font-bold capitalize">{key}</h2>
-                      <p className="break-all">{selectedProperty[key]}</p>
+                    <div key={key.name}>
+                      <h2 className="font-bold capitalize">{key.as || key.name}</h2>
+                      {key.type === 'basic' && (
+                        <p className="break-all">{key.formatter(selectedProperty[key.name])}</p>
+                      )}
+                      {key.type === 'range' && (
+                        <div className="pt-2 pb-6">
+                          <LineChart
+                            min={getMin(key.name, properties)}
+                            max={getMax(key.name, properties)}
+                            value={selectedProperty[key.name]}
+                            formatter={key.formatter}
+                          />
+                        </div>
+                      )}
                     </div>
                   ))}
                 </div>
-                <div className="p-3 space-y-4">
-                  <Link href="/line">view price line comparator</Link>
-                </div>
               </>
             ) : (
-              'Please Select a Property'
+              <h2 className="px-12 py-6 text-xl font-medium text-center">
+                Please Select A Property
+              </h2>
             )}
           </div>
         </div>
@@ -96,7 +115,3 @@ export default function MapPage({ properties }) {
     </>
   );
 }
-
-
-
-
