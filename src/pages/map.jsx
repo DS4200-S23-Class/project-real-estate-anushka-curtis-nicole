@@ -17,9 +17,38 @@ export async function getStaticProps(context) {
   };
 }
 
-const listOfAttributes = ["name","price","beds", "baths", "status","dateListed", 
-                          "listingAgentName",	"listingAgentPhoneNumber", "listingAgentEmail",
-                          "listingAgencyName"];
+//functions of min max price lines here
+const minMax = (data = properties, attributeName = "price") => {
+
+  const totals = data
+    .filter(x =>
+      x.obj.info.find(y => y.attributeName)
+    ).map(x => x.obj.total);
+
+  return [Math.min(...totals), Math.max(...totals)];
+}
+
+const priceMinMax = minMax();
+const bedsMinMax = minMax(attributeName = "beds");
+
+const XAxis = ({ data, xScale, height }) => {
+  return (
+    <g className="x-axis">
+      {data.map((d, i) => (
+        <g key={i} transform={`translate(${xScale(d)},0)`}>
+          <line y2={height} />
+          <text y={height + 10} dy=".71em" style={{ textAnchor: 'middle' }}>{d}</text>
+        </g>
+      ))}
+    </g>
+  );
+};
+
+export default XAxis;
+
+const listOfAttributes = ["name", "price", "beds", "baths", "status", "dateListed",
+  "listingAgentName", "listingAgentPhoneNumber", "listingAgentEmail",
+  "listingAgencyName"];
 
 export default function MapPage({ properties }) {
   const [selectedProperty, setSelectedProperty] = useState({});
@@ -55,7 +84,7 @@ export default function MapPage({ properties }) {
                   ))}
                 </div>
                 <div className="p-3 space-y-4">
-                  <Link href = "/line">view price line comparator</Link>
+                  <Link href="/line">view price line comparator</Link>
                 </div>
               </>
             ) : (
