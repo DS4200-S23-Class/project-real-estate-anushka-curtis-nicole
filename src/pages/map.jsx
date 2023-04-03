@@ -2,7 +2,7 @@ import dynamic from 'next/dynamic';
 import { useState } from 'react';
 import * as d3 from 'd3';
 import Image from 'next/image';
-
+import Link from 'next/link';
 import { LineChart } from '@/components/charts/line';
 import { addNumberCommas } from '@/utils/add-number-commas';
 
@@ -55,6 +55,10 @@ function getMax(attribute, collection) {
   return property[attribute];
 }
 
+const cityNames = ["Central","Chappy,Downtown","East Chop","Katama","Lagoon",
+"Lagoon/Harbor","Lambert's Cove","North","Sengy","South","South Shore", 
+"State Beach", "Tashmoo", "West Chop"];
+
 export default function MapPage({ properties }) {
   const [selectedProperty, setSelectedProperty] = useState({});
 
@@ -92,11 +96,11 @@ export default function MapPage({ properties }) {
                       )}
                       {key.type === 'range' && (
                         <div className="pt-2 pb-6">
-                          <LineChart
+                          {/* <LineChart
                             min={getMin(key.name, properties)}
                             max={getMax(key.name, properties)}
                             value={selectedProperty[key.name]}
-                            formatter={key.formatter}
+                            formatter={key.formatter} */}
                           />
                         </div>
                       )}
