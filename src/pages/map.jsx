@@ -108,6 +108,7 @@ export default function MapPage({ properties }) {
                         value = {selectedProperty[key.name]}
                         city = {selectedProperty.area}
                         attribute = {properties[key.name]} />
+                        
                          <LineChart
                             min={getMin(key.name, properties)}
                             max={getMax(key.name, properties)}
