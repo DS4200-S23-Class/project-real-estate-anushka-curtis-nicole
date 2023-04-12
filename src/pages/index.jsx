@@ -17,38 +17,35 @@ export default function Home() {
           certain price points. However, when moving to a new area, it can be
           difficult, time consuming, and tedious to learn about an area and
           discover if the properties available fit a buyer’s budget preferences.
-          This visualization will help potential buyers looking to move to
-          Martha’s Vineyard discover the different neighborhoods of Martha’s
-          Vineyard in a manner that will help them choose which potential areas
-          they may choose to buy properties in. The visualization will use a
-          heat map of Martha’s Vineyard that colors areas of Martha’s Vineyard
-          based on the price points of those areas. Users can click into
-          different areas of the heat map to zoom in on those areas and can then
-          see the individual properties available for sale within those areas.
-          Users may click on individual properties that are for sale in order to
-          see data such as size, asking price, number of beds/baths, and contact
-          information for the property owner to make further inquiries.
+          This visualization aims to assist property buyers in identifying areas
+          with opportunities for purchasing properties in Martha's Vineyard. Users
+          can explore individual listings that meet their criteria through
+          tooltips containing relevant information, including contact details of
+          the seller. The visualization is intended to streamline the property
+          buying process by reducing research time and facilitating interactions
+          with unbiased agents and brokers. By providing an efficient means of
+          locating properties, the visualization offers buyers a practical
+          solution to the daunting task of purchasing property.
         </div>
 
         <div>
           <h2>Background</h2>
           <h3>Data</h3>
           <h4>What Does This Tool Visualize</h4>
-          This visualization aims to assist property buyers in identifying areas
-          with opportunities for purchasing properties in Martha's Vineyard. The
-          visualization employs a heat map created using spatial autocorrelation
-          and data obtained from a regional multi-listing service (MLS) to
-          display areas with properties for sale based on the calculated average
-          price of those areas. Users can click on a certain area to zoom in and
-          start viewing individual properties that are for sale in those areas.
-          Users can explore individual listings that meet their criteria through
-          tooltips containing relevant information, including contact details of
-          the seller. Listings will be presented based on expressed area of
-          interest. The visualization is intended to streamline the property
-          buying process by reducing research time and facilitating interactions
-          with unbiased agents and brokers. By providing an efficient means of
-          locating properties, the visualization offers buyers a practical
-          solution to the daunting task of purchasing property.
+          This visualization will help potential buyers looking to move to
+          Martha’s Vineyard discover the different neighborhoods of Martha’s
+          Vineyard in a manner that will help them choose which potential areas
+          they may choose to buy properties in. The visualization displays available
+          real estate listings as points on a map of Martha's Vineyard, and users
+          can click into each listing to view property attributes including size,
+          number of beds/baths, and especially, price. Each attribute also includes
+          a scatter plot for each town in Martha's Vineyard that shows the distribution
+          of property prices within each town, making it easy for possible buyers to learn
+          about different areas. This functionaltiy also reduces the cognitive load
+          neessary for potential buyers to understand where the listing being viewed falls
+          within the distribution of price/beds/baths/size/etc. within the specific town
+          they're looking at as well as Martha's Vineyard overall. Contact information
+          for the property owner to make further inquiries is also available for each listing.
           <h4>
             The Source of The Data and Biases and Ethical Issues Embedded In The
             Data
