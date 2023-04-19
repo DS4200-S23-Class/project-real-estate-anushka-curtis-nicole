@@ -151,12 +151,9 @@ export default function Home() {
             <Link href="@/DS4200 - pm02.pdf">VIEW REPORT</Link>
           </div>
           <div className="text-xl font-bold" id="demo video link">
-            <p>
-              VIEW DEMO VIDEO BELOW
-            </p>
-            <video>
-              controls="controls"
-              src="media/DS4200 Real Estate HD Download with Subtitles.mp4"
+            <p>VIEW DEMO VIDEO BELOW</p>
+            <video width="320" height="240" controls>
+              <source src="media/DS4200 Real Estate HD Download with Subtitles.mp4"></source>
             </video>
           </div>
         </div>
