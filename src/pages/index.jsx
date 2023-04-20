@@ -1,6 +1,35 @@
 import Link from "next/link";
 
 export default function Home() {
+  // Function will execute on click of button
+  const retrieveReport = () => {
+    // using Java Script method to get PDF file
+    fetch("roughdraftreport.pdf").then((response) => {
+      response.blob().then((blob) => {
+        // Creating new object of PDF file
+        const fileURL = window.URL.createObjectURL(blob);
+        // Setting various property values
+        let alink = document.createElement("a");
+        alink.href = fileURL;
+        alink.download = "roughdraftreport.pdf";
+        alink.click();
+      });
+    });
+  };
+  const retrieveData = () => {
+    // using Java Script method to get PDF file
+    fetch("properties.csv").then((response) => {
+      response.blob().then((blob) => {
+        // Creating new object of PDF file
+        const fileURL = window.URL.createObjectURL(blob);
+        // Setting various property values
+        let alink = document.createElement("a");
+        alink.href = fileURL;
+        alink.download = "properties.csv";
+        alink.click();
+      });
+    });
+  };
   return (
     <main className="px-6 space-y-8 max-w-7xl prose">
       <h1 className="text-5xl font-bold">Real Estate Data Visualization</h1>
@@ -148,10 +177,10 @@ export default function Home() {
             presented felt organized when looked at in its tabulated format.
           </p>
           <div className="text-xl font-bold" id="raw data link">
-            <Link href="@/public/properties.csv">VIEW RAW DATA</Link>
+            <button onClick={retrieveData}>View Data</button>
           </div>
           <div className="text-xl font-bold" id="report link">
-            <Link href="@/DS4200 - pm02.pdf">VIEW REPORT</Link>
+            <button onClick={retrieveReport}>View Report</button>
           </div>
           <div className="text-xl font-bold" id="demo video link">
             <Link href="@/THIS WILL EVENTUALLY BE A DEMO VIDEO.pdf">
